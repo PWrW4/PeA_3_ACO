@@ -9,7 +9,7 @@ using namespace std;
 
 Menu::Menu()
 {
-	graph = new Graph(0);
+	graph = new Graph();
 	global = new Global();
 	srand(unsigned int(time(NULL)));
 }
@@ -102,10 +102,9 @@ void Menu::ManualTest()
 		{
 		case 1:
 		{
-			//AntColony* algorithm = new AntColony(*global, graph);
-			// algorithm->Solve();
-			// algorithm->PrintData();
-			//delete algorithm;
+			AntColony* algorithm = new AntColony(graph,global);
+			algorithm->startAlgorithm();
+			delete algorithm;
 
 			system("pause");
 			system("cls");
@@ -133,11 +132,10 @@ void Menu::GraphSetup()
 
 	while (1)
 	{
-		int from_file = -1, x = -1;
-
+		int x = -1;
+		string name;
 		system("cls");
 		cout << "MENU Grafu\n\n"
-			<< "wczytano graf: " << graph->name.c_str()
 			<< "\n1 - Wczytaj\n"
 			<< "2 - Wyswietl\n"
 			<< "3 - Powrot\n"
@@ -148,13 +146,14 @@ void Menu::GraphSetup()
 		{
 		case 1:
 		{
-			graph->ReadGraph();
+			std::cin >> name;
+			graph->LoadGraph(name);
 			system("cls");
 			break;
 		}
 		case 2:
 		{
-			graph->PrintGraph();
+			graph->DrawMatrix();
 			system("pause");
 			system("cls");
 			break;

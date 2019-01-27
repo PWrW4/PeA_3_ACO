@@ -25,6 +25,8 @@ void Global::Params()
 			<< "4 - evaporate: " << evaporate << "\n"
 			<< "0 - Powrot\n";
 
+		std::cin >> x;
+
 		switch (x)
 		{
 		case 1:

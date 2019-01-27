@@ -3,10 +3,10 @@ class Global
 {
 public:
 
-	double alpha;
-	double beta;
-	int iterations;
-	double evaporate;
+	double alpha = 1;
+	double beta = 2;
+	int iterations = 100;
+	double evaporate = 0.7;
 
 	Global();
 	~Global();
