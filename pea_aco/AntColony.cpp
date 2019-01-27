@@ -198,8 +198,15 @@ void AntColony::calculateProb(int antIndex)
 		if (ants[antIndex].cityVisited(i)) prob[i] = 0.0;
 		else
 		{
-			double numerator = pow(Phero[currentCity][i], alphaFactor) * pow(1.0 / (double)graph->CityMatrix[currentCity][i], betaFactor);
-			prob[i] = numerator / denom;
+			if (graph->CityMatrix[currentCity][i]==0)
+			{
+				prob[i] = 1;
+			}
+			else
+			{
+				double numerator = pow(Phero[currentCity][i], alphaFactor) * pow(1.0 / (double)graph->CityMatrix[currentCity][i], betaFactor);
+				prob[i] = numerator / denom;
+			}
 		}
 	}
 }
