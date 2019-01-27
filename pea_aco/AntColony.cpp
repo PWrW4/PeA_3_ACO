@@ -24,7 +24,7 @@ AntColony::AntColony(Graph * _graph, Global * glo)
 	prob.resize(dimension);
 	Phero.assign(dimension, std::vector<double>(dimension));
 	totalLength = INT_MAX;
-	colonySize = 5;
+	colonySize = dimension;
 
 	this->alphaFactor = glo->alpha;
 	this->betaFactor = glo->beta;
@@ -128,6 +128,8 @@ void AntColony::runAnt(int antIndex)
 	{
 		bestSolution = ants[antIndex].getCurrentOrder();
 		totalLength = ants[antIndex].getTotalDistance();
+
+		std::cout << totalLength<<std::endl;
 	}
 
 	ants[antIndex].clear();
@@ -204,6 +206,7 @@ void AntColony::calculateProb(int antIndex)
 
 void AntColony::startAlgorithm()
 {
+
 	int count = 0;
 	while (count < iteration)
 	{

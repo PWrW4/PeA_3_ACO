@@ -9,10 +9,13 @@ class Ant
 	int initialCity;
 	int currentCity;
 	int totalDistance;
+	int dim;
 public:
 	Ant();
 	Ant(int dimension, int initialCity);
 	~Ant();
+
+	void init();
 
 	std::vector<int> getCurrentOrder() { return currentOrder; }
 	int getCurrentCity() { return currentCity; }
