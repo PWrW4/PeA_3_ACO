@@ -130,7 +130,7 @@ void AntColony::runAnt(int antIndex)
 		bestSolution = ants[antIndex].getCurrentOrder();
 		totalLength = ants[antIndex].getTotalDistance();
 
-		std::cout << totalLength<<std::endl;
+		// std::cout << totalLength<<std::endl;
 	}
 
 	ants[antIndex].clear();
