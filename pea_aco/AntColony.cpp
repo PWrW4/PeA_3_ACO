@@ -5,6 +5,7 @@
 #include "Ant.h"
 #include "Global.h"
 #include <iostream>
+#include <Windows.h>
 
 
 double fRand(double fMin, double fMax)
@@ -219,13 +220,15 @@ void AntColony::calculateProb(int antIndex)
 
 void AntColony::startAlgorithm()
 {
-
+	StartCounter();
 	int count = 0;
 	while (count < iteration)
 	{
 		runAllAnts();
 		count++;
 	}
+
+	std::cout << "Time "<<GetCounter()<<std::endl;
 
 	std::cout << "Cost of route: " << calcSolutionCost(bestSolution) << std::endl;
 
@@ -241,4 +244,23 @@ void AntColony::startAlgorithm()
 			std::cout << bestSolution[i] << " -> ";
 		}
 	}
+}
+
+void AntColony::StartCounter()
+{
+	LARGE_INTEGER li;
+	if (!QueryPerformanceFrequency(&li))
+		std::cout << "QueryPerformanceFrequency failed!\n";
+
+	PCFreq = double(li.QuadPart) / 1000.0;
+
+	QueryPerformanceCounter(&li);
+	CounterStart = li.QuadPart;
+}
+
+double AntColony::GetCounter()
+{
+	LARGE_INTEGER li;
+	QueryPerformanceCounter(&li);
+	return double(li.QuadPart - CounterStart) / PCFreq;
 }

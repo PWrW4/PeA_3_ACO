@@ -7,6 +7,14 @@ class Global;
 class AntColony
 {
 private:
+	double PCFreq = 0.0;
+	__int64 CounterStart = 0;
+
+	void StartCounter();
+	double GetCounter();
+
+
+
 	std::vector<std::vector<double>> Phero;
 	std::vector<int> bestSolution;
 	std::vector<Ant> ants;
