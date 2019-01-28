@@ -24,8 +24,8 @@ AntColony::AntColony(Graph * _graph, Global * glo)
 	prob.resize(dimension);
 	Phero.assign(dimension, std::vector<double>(dimension));
 	totalLength = INT_MAX;
-	colonySize = dimension;
 
+	this->colonySize = glo->colonySize;
 	this->alphaFactor = glo->alpha;
 	this->betaFactor = glo->beta;
 	this->iteration = glo->iterations;
@@ -161,17 +161,23 @@ int AntColony::drawCity(int antIndex)
 
 	calculateProb(antIndex);
 
-	double boundary = fRand(0.4, 1.0);
-	while (true)
-	{
-		int index = (rand() % dimension);
-		double probs = prob[index];
-		if (probs >= boundary) return index;
+	double max = 0;
 
-		if (probs != 0.0)
+	for (int i = 0; i < dimension; ++i)
+	{
+		max += prob[i];
+	}
+
+	double boundary = fRand(0, max);
+
+	double current=0;
+
+	for (int i = 0; i < dimension; ++i)
+	{
+		current += prob[i];
+		if (boundary<=current)
 		{
-			prob[index] += 0.2;
-			probs = prob[index];
+			return i;
 		}
 	}
 

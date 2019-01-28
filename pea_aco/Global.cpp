@@ -23,6 +23,7 @@ void Global::Params()
 			<< "2 - alpha: " << alpha << "\n"
 			<< "3 - beta: " << beta << "\n"
 			<< "4 - evaporate: " << evaporate << "\n"
+			<< "5 - colony size: " << colonySize << "\n"
 			<< "0 - Powrot\n";
 
 		std::cin >> x;
@@ -73,6 +74,17 @@ void Global::Params()
 				system("cls");
 				break;
 			}
+		case 5:
+		{
+			int _colonysize;
+			printf("> ");
+			cin >> _colonysize;
+			colonySize = _colonysize;
+
+
+			system("cls");
+			break;
+		}
 		case 0:
 			{
 				system("cls");

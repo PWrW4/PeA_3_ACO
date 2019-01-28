@@ -92,7 +92,7 @@ void Menu::ManualTest()
 	{
 		system("cls");
 		cout << "MENU Testow manualnych\n\n"
-			<< "1 - Genetic Algorithm\n"
+			<< "1 - ACO\n"
 			<< "2 - Powrot\n"
 			<< endl;
 		cout << "\n\n>";
